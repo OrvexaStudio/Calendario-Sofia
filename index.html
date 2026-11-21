@@ -1,483 +1,121 @@
 
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>24 giorni per te, Sofia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <meta name="theme-color" content="#10090D">
+    <meta name="description" content="Un piccolo regalo speciale per Sofia.">
 
-body {
-    background: #090708;
-    color: #fff;
-    font-family: Georgia, serif;
-    overflow-x: hidden;
-}
+    <title>24 giorni per te, Sofia</title>
 
-/* INTRO */
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-#intro {
-    position: fixed;
-    inset: 0;
-    z-index: 10;
-    background: #080607;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: opacity 1.5s ease;
-}
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-.door-scene {
-    width: min(78vw, 390px);
-    height: min(76vh, 590px);
-    perspective: 1400px;
-    position: relative;
-}
-
-.door-frame {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, #4b1728, #170c11);
-    border: 9px solid #a47a49;
-    box-shadow: 0 0 50px #9e5260;
-    display: flex;
-    overflow: hidden;
-}
-
-.door {
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(100deg, #6e263b, #381522);
-    border: 3px solid #a77b4d;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 2.4s cubic-bezier(.65,0,.25,1);
-}
-
-.door.left {
-    transform-origin: left center;
-}
-
-.door.right {
-    transform-origin: right center;
-}
-
-.door-panel {
-    position: absolute;
-    inset: 12px;
-    border: 2px solid #a77b4d;
-    margin: 15px;
-}
-
-.door-panel::after {
-    content: "";
-    position: absolute;
-    inset: 35px 10px;
-    border: 1px solid #a77b4d;
-}
-
-.handle {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    width: 10px;
-    height: 10px;
-    background: #e4c18a;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #f4d8a6;
-}
-
-.door.right .handle {
-    left: 15px;
-}
-
-.wreath {
-    position: absolute;
-    top: 27%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 105px;
-    height: 105px;
-    border: 9px solid #31553d;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #d7a56c;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.wreath::before {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 3px dotted #b88b56;
-    border-radius: 50%;
-}
-
-.door-title {
-    position: absolute;
-    bottom: 13%;
-    width: 100%;
-    text-align: center;
-    color: #ead1ad;
-    font-size: 12px;
-    letter-spacing: 4px;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.intro-text {
-    margin-top: 30px;
-    text-align: center;
-    color: #d7bdc6;
-    letter-spacing: 2px;
-    font-size: 13px;
-    animation: breathe 3s infinite;
-}
-
-@keyframes breathe {
-    50% { opacity: .4; }
-}
-
-/* OPENING */
-
-#intro.open .door.left {
-    transform: rotateY(-110deg);
-}
-
-#intro.open .door.right {
-    transform: rotateY(110deg);
-}
-
-#intro.open {
-    animation: disappear 1.7s ease 2.3s forwards;
-}
-
-@keyframes disappear {
-    to {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-}
-
-/* CALENDAR */
-
-#calendar {
-    min-height: 100vh;
-    opacity: 0;
-    transform: scale(.85);
-    transition: opacity 2s ease, transform 2s ease;
-    padding: 55px 20px;
-    background:
-        radial-gradient(ellipse at top, #542337 0%, #24121d 45%, #100b10 100%);
-}
-
-#calendar.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.header {
-    text-align: center;
-    margin: 0 auto 45px;
-}
-
-.header .small {
-    color: #d6a6b8;
-    font-size: 11px;
-    letter-spacing: 5px;
-}
-
-.header h1 {
-    font-size: clamp(35px, 7vw, 62px);
-    font-weight: normal;
-    color: #f4dbe4;
-    margin: 20px 0 12px;
-}
-
-.header p {
-    color: #c9aab7;
-    font-size: 15px;
-    font-style: italic;
-}
-
-.grid {
-    width: min(100%, 850px);
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-
-.day {
-    aspect-ratio: 1;
-    border: 1px solid #b68a77;
-    background: linear-gradient(145deg, #71364d, #3d1d2d);
-    color: #f7e5dc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    cursor: pointer;
-    transition: .35s;
-    box-shadow: 0 8px 20px #0005;
-}
-
-.day:hover {
-    transform: translateY(-7px);
-    background: linear-gradient(145deg, #a85e79, #66344c);
-    box-shadow: 0 10px 30px #bd829655;
-}
-
-.day span {
-    font-size: clamp(22px, 4vw, 34px);
-}
-
-.day small {
-    margin-top: 8px;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: #e2c0c9;
-}
-
-/* SURPRISE */
-
-#surprise {
-    position: fixed;
-    inset: 0;
-    z-index: 20;
-    background: #090708df;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.surprise-box {
-    background: linear-gradient(145deg, #54273c, #25131d);
-    border: 1px solid #bd927b;
-    padding: 45px 30px;
-    width: min(100%, 480px);
-    text-align: center;
-    box-shadow: 0 20px 80px #0009;
-    animation: appear .5s ease;
-}
-
-@keyframes appear {
-    from { opacity: 0; transform: translateY(20px) scale(.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.surprise-box small {
-    color: #dcb6c5;
-    letter-spacing: 4px;
-}
-
-.surprise-box h2 {
-    color: #f5dce5;
-    font-weight: normal;
-    font-size: 30px;
-    margin: 25px 0;
-}
-
-.surprise-box p {
-    color: #ead4dc;
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-.close {
-    margin-top: 30px;
-    border: 1px solid #c49a8b;
-    padding: 12px 28px;
-    background: transparent;
-    color: #f2dce3;
-    cursor: pointer;
-    letter-spacing: 2px;
-}
-
-@media(max-width: 500px) {
-    .grid {
-        gap: 9px;
-    }
-
-    #calendar {
-        padding: 40px 14px;
-    }
-
-    .day small {
-        font-size: 7px;
-    }
-}
-</style>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/door.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/surprise.css">
 </head>
 
 <body>
 
-<!-- PORTA INIZIALE -->
+    <!-- INTRO / CHRISTMAS DOOR -->
+    <section id="intro" class="intro">
 
-<section id="intro">
-    <div class="door-scene">
+        <div class="door-scene" id="doorScene">
 
-        <div class="door-frame">
+            <div class="door-frame">
 
-            <div class="door left">
-                <div class="door-panel"></div>
-            </div>
+                <div class="door door-left">
+                    <div class="door-decoration"></div>
+                </div>
 
-            <div class="door right">
-                <div class="door-panel"></div>
-                <div class="handle"></div>
-            </div>
+                <div class="door door-right">
+                    <div class="door-decoration"></div>
+                </div>
 
-            <div class="wreath"></div>
+                <div class="door-wreath"></div>
 
-            <div class="door-title">
-                PER TE, SOFIA
+                <div class="door-label">
+                    PER TE, SOFIA
+                </div>
+
             </div>
 
         </div>
+
+        <div class="intro-caption">
+            <p>C'è qualcosa che vorrei mostrarti...</p>
+            <span>Clicca per entrare</span>
+        </div>
+
+    </section>
+
+
+    <!-- CALENDAR -->
+    <main id="calendar" class="calendar hidden">
+
+        <header class="calendar-header">
+
+            <span class="eyebrow">DICEMBRE 2026</span>
+
+            <h1>24 giorni per te</h1>
+
+            <p>
+                Ho preparato qualcosa di speciale.
+                Un piccolo pensiero, ogni giorno, per te.
+            </p>
+
+        </header>
+
+        <section id="calendarGrid" class="calendar-grid">
+
+            <!-- Caselle generate da JavaScript -->
+
+        </section>
+
+        <footer class="calendar-footer">
+            <p>Con tutto il mio amore.</p>
+        </footer>
+
+    </main>
+
+
+    <!-- SURPRISE MODAL -->
+    <div id="surpriseModal" class="surprise-modal hidden">
+
+        <div class="surprise-content">
+
+            <button
+                id="closeSurprise"
+                class="close-surprise"
+                aria-label="Chiudi sorpresa">
+                ×
+            </button>
+
+            <span id="surpriseDay" class="surprise-day"></span>
+
+            <h2 id="surpriseTitle"></h2>
+
+            <div id="surpriseBody" class="surprise-body"></div>
+
+        </div>
+
     </div>
 
-    <p class="intro-text">C'è qualcosa che vorrei mostrarti...</p>
-</section>
 
-<!-- CALENDARIO -->
-
-<main id="calendar">
-
-    <header class="header">
-        <div class="small">DICEMBRE 2026</div>
-
-        <h1>24 giorni per te</h1>
-
-        <p>Un piccolo pensiero, ogni giorno, per te.</p>
-    </header>
-
-    <section class="grid" id="grid"></section>
-
-</main>
-
-<!-- FINESTRA SORPRESA -->
-
-<div id="surprise">
-    <div class="surprise-box">
-
-        <small id="surprise-day"></small>
-
-        <h2 id="surprise-title"></h2>
-
-        <p id="surprise-text"></p>
-
-        <button class="close" onclick="closeSurprise()">
-            CHIUDI
-        </button>
-
-    </div>
-</div>
-
-<script>
-
-// CONTENUTI MODIFICABILI
-
-const surprises = [
-    { title: "Una lettera per te", text: "Vorrei iniziare questo piccolo viaggio dicendoti che averti nella mia vita è una delle cose più belle che mi siano capitate." },
-    { title: "Il tuo sorriso", text: "Se potessi conservare un solo momento della giornata, sceglierei quello in cui riesco a farti sorridere." },
-    { title: "Una cosa che amo", text: "Amo il modo in cui riesci a rendere speciali anche i momenti più semplici." },
-    { title: "Un nostro ricordo", text: "Tra tutti i momenti vissuti insieme, ce n'è uno che vorrei rivivere ancora e ancora." },
-    { title: "Una canzone", text: "Questa canzone mi fa pensare a te. Vorrei che ogni volta che la ascolti ti ricordassi di me." },
-    { title: "Una promessa", text: "Prometto di continuare a sorprenderti, anche con le piccole cose." },
-    { title: "Una dedica", text: "Non servono occasioni speciali per ricordarti quanto sei importante." },
-    { title: "Dieci motivi", text: "Potrei trovare mille motivi per volerti bene. Oggi te ne racconto qualcuno." },
-    { title: "Un momento divertente", text: "Ci sono cose che fanno ridere soltanto noi. Ed è proprio questo il bello." },
-    { title: "Una fotografia", text: "Questa foto racchiude un momento che vorrei non dimenticare mai." },
-    { title: "Un abbraccio", text: "Se fossi qui adesso, probabilmente vorrei soltanto abbracciarti." },
-    { title: "Una sorpresa", text: "Oggi non voglio dirti tutto. Alcune cose è più bello scoprirle." },
-    { title: "Il mio ricordo preferito", text: "Tra tutti i nostri momenti, questo occupa un posto speciale nel mio cuore." },
-    { title: "Una poesia", text: "Ci sono persone che arrivano e rendono tutto un po' più bello. Tu sei una di quelle." },
-    { title: "Un appuntamento", text: "Vorrei portarti in un posto speciale. Ma soprattutto vorrei condividere quel momento con te." },
-    { title: "Un desiderio", text: "Vorrei vivere ancora tantissimi momenti insieme a te." },
-    { title: "Una cosa speciale", text: "Non so se te lo dico abbastanza, ma sono davvero felice di averti accanto." },
-    { title: "La nostra playlist", text: "Ogni canzone può raccontare qualcosa di noi. Questa è una piccola parte della nostra storia." },
-    { title: "Il futuro", text: "Non so cosa ci aspetta domani, ma mi piace pensare a tutti i momenti che dobbiamo ancora vivere." },
-    { title: "Una lettera", text: "A volte vorrei fermare il tempo quando sono con te." },
-    { title: "Sceglierti", text: "Tra tutte le persone, sono felice che le nostre strade si siano incontrate." },
-    { title: "Un'altra sorpresa", text: "Manca pochissimo al nostro ultimo appuntamento con questo calendario." },
-    { title: "Quasi Natale", text: "Domani arriverà qualcosa che ho preparato con tanto amore." },
-    { title: "Il nostro finale", text: "Sofia, se sei arrivata fin qui, significa che hai aperto tutti i miei piccoli regali. Ma il regalo più bello, per me, è averti nella mia vita." }
-];
-
-// CREAZIONE DELLE CASELLE
-
-const grid = document.getElementById("grid");
-
-surprises.forEach((item, index) => {
-
-    const day = document.createElement("button");
-
-    day.className = "day";
-
-    day.innerHTML = `
-        <span>${String(index + 1).padStart(2, "0")}</span>
-        <small>APRI</small>
-    `;
-
-    day.onclick = () => openSurprise(index);
-
-    grid.appendChild(day);
-
-});
-
-// APERTURA PORTA
-
-const intro = document.getElementById("intro");
-const calendar = document.getElementById("calendar");
-
-intro.addEventListener("click", () => {
-
-    if (intro.classList.contains("open")) return;
-
-    intro.classList.add("open");
-
-    setTimeout(() => {
-        calendar.classList.add("visible");
-    }, 2300);
-
-}, { once: true });
-
-// APERTURA CASELLA
-
-function openSurprise(index) {
-
-    const item = surprises[index];
-
-    document.getElementById("surprise-day").textContent =
-        "GIORNO " + String(index + 1).padStart(2, "0");
-
-    document.getElementById("surprise-title").textContent =
-        item.title;
-
-    document.getElementById("surprise-text").textContent =
-        item.text;
-
-    document.getElementById("surprise").style.display = "flex";
-
-}
-
-// CHIUSURA CASELLA
-
-function closeSurprise() {
-    document.getElementById("surprise").style.display = "none";
-}
-
-</script>
+    <!-- JAVASCRIPT -->
+    <script src="js/surprises.js"></script>
+    <script src="js/door.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
