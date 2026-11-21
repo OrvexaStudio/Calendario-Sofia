@@ -1,0 +1,74 @@
+
+/* ========================================
+   CALENDARIO SOFIA
+   GLOBAL STYLES
+======================================== */
+
+:root {
+    --background: #10090D;
+    --background-soft: #1A1017;
+
+    --burgundy: #59283D;
+    --burgundy-light: #783B53;
+
+    --pink: #D8A8B9;
+    --pink-light: #F1DCE4;
+
+    --gold: #C6A276;
+    --gold-light: #E4CBA5;
+
+    --text: #F5E9ED;
+    --text-muted: #BFA5B0;
+
+    --font-title: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    --transition: 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 5px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+::selection {
+    background: var(--burgundy-light);
+    color: white;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
