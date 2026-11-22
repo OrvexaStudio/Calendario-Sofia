@@ -70,6 +70,12 @@ function initializeCalendar() {
             closeModal();
         }
     });
+   const audio = modal.querySelector("audio");
+
+if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+}
 
 }
 
