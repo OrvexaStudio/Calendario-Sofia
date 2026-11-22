@@ -42,7 +42,7 @@ const surprises = [
     title: "Una canzone",
     type: "music",
     content: "Questa canzone mi farà sempre pensare a te.",
-    media: "assets/music/canzone.mp3"
+    media: "assets/music/sentire-la-musica.mp3"
 },
 
     {
