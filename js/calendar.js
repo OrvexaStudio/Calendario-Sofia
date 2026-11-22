@@ -22,7 +22,6 @@ function initializeCalendar() {
         const button = document.createElement("button");
 
         button.className = "calendar-day";
-
         button.type = "button";
 
         button.setAttribute(
@@ -51,33 +50,25 @@ function initializeCalendar() {
     // MODAL
 
     const modal = document.getElementById("surpriseModal");
-
     const closeButton = document.getElementById("closeSurprise");
 
     function closeModal() {
-
         modal.classList.add("hidden");
-
         document.body.style.overflow = "";
-
     }
 
     closeButton.addEventListener("click", closeModal);
 
     modal.addEventListener("click", event => {
-
         if (event.target === modal) {
             closeModal();
         }
-
     });
 
     document.addEventListener("keydown", event => {
-
         if (event.key === "Escape") {
             closeModal();
         }
-
     });
 
 }
@@ -92,11 +83,8 @@ function openSurprise(index) {
     if (!surprise) return;
 
     const modal = document.getElementById("surpriseModal");
-
     const day = document.getElementById("surpriseDay");
-
     const title = document.getElementById("surpriseTitle");
-
     const body = document.getElementById("surpriseBody");
 
     day.textContent =
@@ -106,6 +94,20 @@ function openSurprise(index) {
 
     body.replaceChildren();
 
+    // IMMAGINE
+
+    if (surprise.image) {
+
+        const image = document.createElement("img");
+
+        image.src = surprise.image;
+        image.alt = "Ricordo del giorno " + (index + 1);
+        image.className = "surprise-image";
+
+        body.appendChild(image);
+
+    }
+
     // TESTO
 
     if (surprise.content) {
@@ -113,22 +115,9 @@ function openSurprise(index) {
         const paragraph = document.createElement("p");
 
         paragraph.textContent = surprise.content;
+        paragraph.className = "surprise-text";
 
         body.appendChild(paragraph);
-
-    }
-
-    // IMMAGINE
-
-    if (surprise.type === "image" && surprise.media) {
-
-        const image = document.createElement("img");
-
-        image.src = surprise.media;
-
-        image.alt = surprise.title;
-
-        body.appendChild(image);
 
     }
 
@@ -139,9 +128,7 @@ function openSurprise(index) {
         const video = document.createElement("video");
 
         video.src = surprise.media;
-
         video.controls = true;
-
         video.playsInline = true;
 
         body.appendChild(video);
@@ -155,7 +142,6 @@ function openSurprise(index) {
         const audio = document.createElement("audio");
 
         audio.src = surprise.media;
-
         audio.controls = true;
 
         body.appendChild(audio);
