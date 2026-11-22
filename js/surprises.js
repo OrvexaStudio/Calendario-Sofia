@@ -15,7 +15,7 @@ const surprises = [
     {
         title: "Come ci siamo incontrati",
         type: "text",
-        content: "Era circa metà settembre, ci stavamo organizzando per il video del diciottesimo della Maria. Non eravamo ancora niente, non eravamo neanche amici. Eppure, non lo sapevamo che, a distanza di poco meno di due mesi, ci saremo fidanzati. Nessuno dei due sapeva cosa il destino ci stava per regalare. Una piccola stella, caduta dal nulla nella mia vita, è diventata ora essenziale. Grazie di esserci. Ti amo!"
+        content: "Era circa metà settembre, ci stavamo organizzando per il video del diciottesimo della Maria. Non eravamo ancora niente, non eravamo neanche amici. Eppure, non lo sapevamo che, a distanza di poco meno di due mesi, ci saremo fidanzati. Nessuno dei due sapeva cosa il destino ci stava per regalare. Una piccola stella, caduta dal nulla nella mia vita, è diventata ora essenziale. Grazie di esserci. Ti amo!",
         media: "",
         image: "assets/images/foto-1.jpg"
     },
