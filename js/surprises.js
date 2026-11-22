@@ -13,21 +13,21 @@
 const surprises = [
 
     {
-        title: "Una lettera per te",
+        title: "Come ci siamo incontrati",
         type: "text",
-        content: "Vorrei iniziare questo piccolo viaggio dicendoti che averti nella mia vita è una delle cose più belle che mi siano capitate."
+        content: "Era circa metà settembre, ci stavamo organizzando per il video del diciottesimo della Maria. Non eravamo ancora niente, non eravamo neanche amici. Eppure, non lo sapevamo che, a distanza di poco meno di due mesi, ci saremo fidanzati. Nessuno dei due sapeva cosa il destino ci stava per regalare. Una piccola stella, caduta dal nulla nella mia vita, è diventata ora essenziale. Grazie di esserci. Ti amo!"
     },
 
     {
-        title: "Il tuo sorriso",
+        title: "La Sofia che conoscevo prima di innamorarmi.",
         type: "text",
-        content: "Se potessi conservare un solo momento della giornata, sceglierei quello in cui riesco a farti sorridere."
+        content: "Come giusto che sia, non eri attaccata a me come oggi, non eravamo nulla. Ma già avevo capito che in te c'era qualcosa che difficilmente si trova nelle persone al giorno d'oggi. Eri molto carina, rompi palle e mi dicevi sempre che ero innamorato di te. E forse è vero, forse l'avevi capito prima di me che mi stavo innamorando."
     },
 
     {
-        title: "Una cosa che amo",
+        title: "I dettagli di te che forse non sai nemmeno di avere.",
         type: "text",
-        content: "Amo il modo in cui riesci a rendere speciali anche i momenti più semplici."
+        content: "Sei un fuoco che non smette mai di ardere, quella fiamma che continua ad alimentarsi e ad espandersi sempre di più. Sei una ragazza che emana felicità, anche quando non lo sei. Ogni tuo dettaglio fa di te una persona estremamente speciale. La tua simpatia è una della cose che amo di più, mi fai ridere sempre perchè ne spari una al minuto. La cosa che amo di te è che preferisci i fatti. Mi piace perchè hai capito che devi essere rispettata e non calpestata. Quindi, continua ad amare i fatti e, diciamo a grandi linee, ignora le parole perchè tutti sono bravi a dirle."
     },
 
     {
