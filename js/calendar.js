@@ -135,18 +135,24 @@ function openSurprise(index) {
 
     }
 
-    // MUSICA
+// MUSICA
 
-    if (surprise.type === "music" && surprise.media) {
+if (surprise.type === "music" && surprise.media) {
 
-        const audio = document.createElement("audio");
+    const audio = document.createElement("audio");
 
-        audio.src = surprise.media;
-        audio.controls = true;
+    audio.src = surprise.media;
+    audio.controls = true;
+    audio.autoplay = true;
+    audio.loop = true;
 
-        body.appendChild(audio);
+    body.appendChild(audio);
 
-    }
+    audio.play().catch(error => {
+        console.log("Riproduzione automatica bloccata:", error);
+    });
+
+}
 
     modal.classList.remove("hidden");
 
