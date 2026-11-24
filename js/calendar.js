@@ -4,6 +4,52 @@
    GRID AND SURPRISE MANAGEMENT
 ======================================== */
 
+
+// ========================================
+// GESTIONE SBLOCCO DATE
+// ========================================
+
+function isDayAvailable(dayNumber) {
+
+    const today = new Date();
+
+    const currentDate = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+    );
+
+    const unlockDate = new Date(2026, 11, dayNumber);
+
+    return currentDate >= unlockDate;
+}
+
+function updateCalendarLocks() {
+
+    document.querySelectorAll(".calendar-day").forEach(button => {
+
+        const dayNumber = Number(button.dataset.day);
+        const available = isDayAvailable(dayNumber);
+
+        button.disabled = !available;
+
+        button.classList.toggle("locked", !available);
+
+        button.querySelector(".day-caption").textContent =
+            available ? "APRI" : "BLOCCATO";
+
+        button.setAttribute(
+            "aria-label",
+            available
+                ? "Apri il giorno " + dayNumber
+                : "Giorno " + dayNumber + " non ancora disponibile"
+        );
+
+    });
+
+}
+
+
 function initializeCalendar() {
 
     const grid = document.getElementById("calendarGrid");
@@ -22,13 +68,19 @@ function initializeCalendar() {
         const button = document.createElement("button");
 
         button.className = "calendar-day";
-        button.type = "button";
+button.type = "button";
+button.dataset.day = number;
 
         button.setAttribute(
             "aria-label",
             "Apri la casella " + number
         );
+// AGGIORNAMENTO AUTOMATICO DELLE CASELLE
 
+updateCalendarLocks();
+
+setInterval(updateCalendarLocks, 30000);
+       
         button.innerHTML = `
             <span class="day-number">
                 ${String(number).padStart(2, "0")}
@@ -98,6 +150,9 @@ function openSurprise(index) {
     const surprise = surprises[index];
 
     if (!surprise) return;
+   if (!isDayAvailable(index + 1)) {
+    return;
+}
 
     const modal = document.getElementById("surpriseModal");
     const day = document.getElementById("surpriseDay");
