@@ -159,3 +159,37 @@
     white-space: pre-line;
     line-height: 1.8;
 }
+
+
+/* ========================================
+   DOWNLOAD CARD
+======================================== */
+
+.download-card {
+    display: block;
+    margin: 35px auto 0;
+    padding: 13px 28px;
+
+    border: 1px solid var(--gold-light);
+    background: transparent;
+
+    color: var(--gold-light);
+
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.download-card:hover {
+    background: var(--gold-light);
+    color: #321B29;
+}
+
+.download-card:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
