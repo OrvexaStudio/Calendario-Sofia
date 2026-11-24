@@ -23,7 +23,7 @@ const surprises = [
     {
         title: "La Sofia che conoscevo prima di innamorarmi.",
         type: "text",
-        content: "Come giusto che sia, non eri attaccata a me come oggi, non eravamo nulla. Ma già avevo capito che in te c'era qualcosa che difficilmente si trova nelle persone al giorno d'oggi. Eri molto carina, rompi palle e mi dicevi sempre che ero innamorato di te. E forse è vero, forse l'avevi capito prima di me che mi stavo innamorando."
+        content: "Prima che iniziassi a provare qualcosa per te, eri semplicemente Sofia, una ragazza con cui mi piaceva parlare e passare del tempo. Non avevo ancora idea di quello che sarebbe successo e non guardavo le cose come le guardo adesso. Mi ricordo che piano piano ho iniziato a conoscerti, a capire come sei fatta e a scoprire sempre qualcosa di nuovo. La cosa buffa è che probabilmente eri già la persona di cui mi sarei innamorato, soltanto che ancora non lo sapevo. Ripensando a quei momenti, mi viene da sorridere, perché adesso conosco molto meglio quella ragazza con cui avevo iniziato semplicemente a parlare. E se potessi tornare a quei primi giorni, non cambierei assolutamente niente. Mi piacerebbe soltanto sapere che, senza accorgercene, stavamo iniziando qualcosa di bello."
     },
 
     {
