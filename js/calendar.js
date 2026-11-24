@@ -100,6 +100,48 @@ function openSurprise(index) {
 
     body.replaceChildren();
 
+   // PULSANTE DOWNLOAD
+
+const downloadButton = document.createElement("button");
+
+downloadButton.type = "button";
+downloadButton.className = "download-card";
+downloadButton.textContent = "Scarica ricordo";
+
+downloadButton.addEventListener("click", async () => {
+
+    const card = document.querySelector(".surprise-card");
+
+    if (!card) {
+        console.error("Card non trovata.");
+        return;
+    }
+
+    try {
+
+        const canvas = await html2canvas(card, {
+            scale: 2,
+            backgroundColor: null,
+            useCORS: true
+        });
+
+        const link = document.createElement("a");
+
+        link.download = `Ricordo-giorno-${String(index + 1).padStart(2, "0")}.png`;
+        link.href = canvas.toDataURL("image/png");
+
+        link.click();
+
+    } catch (error) {
+
+        console.error("Errore durante il download:", error);
+
+    }
+
+});
+
+body.appendChild(downloadButton);
+
     // IMMAGINE
 
     if (surprise.image) {
