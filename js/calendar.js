@@ -53,8 +53,23 @@ function initializeCalendar() {
     const closeButton = document.getElementById("closeSurprise");
 
     function closeModal() {
+
         modal.classList.add("hidden");
         document.body.style.overflow = "";
+
+        const audio = modal.querySelector("audio");
+
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        const video = modal.querySelector("video");
+
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
     }
 
     closeButton.addEventListener("click", closeModal);
@@ -70,17 +85,13 @@ function initializeCalendar() {
             closeModal();
         }
     });
-   const audio = modal.querySelector("audio");
-
-if (audio) {
-    audio.pause();
-    audio.currentTime = 0;
-}
 
 }
 
 
+// ========================================
 // APERTURA SORPRESA
+// ========================================
 
 function openSurprise(index) {
 
@@ -99,48 +110,6 @@ function openSurprise(index) {
     title.textContent = surprise.title;
 
     body.replaceChildren();
-
-   // PULSANTE DOWNLOAD
-
-const downloadButton = document.createElement("button");
-
-downloadButton.type = "button";
-downloadButton.className = "download-card";
-downloadButton.textContent = "Scarica ricordo";
-
-downloadButton.addEventListener("click", async () => {
-
-    const card = document.querySelector(".surprise-card");
-
-    if (!card) {
-        console.error("Card non trovata.");
-        return;
-    }
-
-    try {
-
-        const canvas = await html2canvas(card, {
-            scale: 2,
-            backgroundColor: null,
-            useCORS: true
-        });
-
-        const link = document.createElement("a");
-
-        link.download = `Ricordo-giorno-${String(index + 1).padStart(2, "0")}.png`;
-        link.href = canvas.toDataURL("image/png");
-
-        link.click();
-
-    } catch (error) {
-
-        console.error("Errore durante il download:", error);
-
-    }
-
-});
-
-body.appendChild(downloadButton);
 
     // IMMAGINE
 
@@ -183,24 +152,127 @@ body.appendChild(downloadButton);
 
     }
 
-// MUSICA
+    // MUSICA
 
-if (surprise.type === "music" && surprise.media) {
+    if (surprise.type === "music" && surprise.media) {
 
-    const audio = document.createElement("audio");
+        const audio = document.createElement("audio");
 
-    audio.src = surprise.media;
-    audio.controls = true;
-    audio.autoplay = true;
-    audio.loop = true;
+        audio.src = surprise.media;
+        audio.controls = true;
+        audio.autoplay = true;
+        audio.loop = true;
 
-    body.appendChild(audio);
+        body.appendChild(audio);
 
-    audio.play().catch(error => {
-        console.log("Riproduzione automatica bloccata:", error);
+        audio.play().catch(error => {
+            console.log("Riproduzione automatica bloccata:", error);
+        });
+
+    }
+
+    // PULSANTE DOWNLOAD
+
+    const downloadButton = document.createElement("button");
+
+    downloadButton.type = "button";
+    downloadButton.className = "download-card";
+    downloadButton.textContent = "Scarica ricordo";
+
+    body.appendChild(downloadButton);
+
+    // DOWNLOAD PNG
+
+    downloadButton.addEventListener("click", async () => {
+
+        const card = document.querySelector(".surprise-content");
+        const closeButton = document.getElementById("closeSurprise");
+
+        if (typeof html2canvas === "undefined") {
+            console.error("html2canvas non è stato caricato.");
+            alert("Impossibile generare l'immagine.");
+            return;
+        }
+
+        downloadButton.disabled = true;
+        downloadButton.textContent = "Preparazione...";
+
+        const originalStyles = {
+            maxHeight: card.style.maxHeight,
+            overflow: card.style.overflow,
+            animation: card.style.animation
+        };
+
+        try {
+
+            await document.fonts.ready;
+
+            // PREPARAZIONE CARD
+
+            card.style.maxHeight = "none";
+            card.style.overflow = "visible";
+            card.style.animation = "none";
+
+            closeButton.style.visibility = "hidden";
+            downloadButton.style.display = "none";
+
+            // GENERAZIONE IMMAGINE
+
+            const canvas = await html2canvas(card, {
+                scale: 2,
+                backgroundColor: null,
+                useCORS: true,
+                logging: false,
+                scrollY: 0
+            });
+
+            // CREAZIONE FILE PNG
+
+            canvas.toBlob(blob => {
+
+                if (!blob) {
+                    throw new Error("Impossibile creare il file PNG.");
+                }
+
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+
+                link.href = url;
+                link.download =
+                    `Ricordo-giorno-${String(index + 1).padStart(2, "0")}.png`;
+
+                link.click();
+
+                URL.revokeObjectURL(url);
+
+            }, "image/png");
+
+        } catch (error) {
+
+            console.error("Errore durante il download:", error);
+
+            alert("Non è stato possibile scaricare il ricordo.");
+
+        } finally {
+
+            // RIPRISTINO CARD
+
+            card.style.maxHeight = originalStyles.maxHeight;
+            card.style.overflow = originalStyles.overflow;
+            card.style.animation = originalStyles.animation;
+
+            closeButton.style.visibility = "";
+            downloadButton.style.display = "";
+
+            downloadButton.disabled = false;
+            downloadButton.textContent = "Scarica ricordo";
+
+        }
+
     });
 
-}
+    // APERTURA MODAL
 
     modal.classList.remove("hidden");
 
