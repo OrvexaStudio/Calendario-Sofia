@@ -183,3 +183,31 @@
         letter-spacing: 1px;
     }
 }
+
+
+/* ========================================
+   GIORNI BLOCCATI
+======================================== */
+
+.calendar-day.locked {
+    opacity: 0.45;
+    filter: grayscale(0.65);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.calendar-day.locked:hover {
+    transform: none;
+    background: linear-gradient(145deg, #754054, #452337);
+    box-shadow: none;
+}
+
+.calendar-day.locked .day-caption {
+    color: #B99AAA;
+    letter-spacing: 2px;
+}
+
+.calendar-day:disabled {
+    pointer-events: none;
+}
