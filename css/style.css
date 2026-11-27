@@ -222,3 +222,36 @@ body::after {
     }
 
 }
+
+/* ========================================
+   COUNTDOWN UNLOCK ANIMATION
+======================================== */
+
+.countdown-screen {
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity 1.8s ease,
+        visibility 1.8s ease;
+}
+
+.countdown-screen.finished {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* PORTA NATALIZIA */
+
+#intro {
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+        opacity 2s ease,
+        transform 2.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+#intro.countdown-reveal {
+    opacity: 1;
+    transform: scale(1);
+}
