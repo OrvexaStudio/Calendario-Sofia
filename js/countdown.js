@@ -29,11 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
             minutesElement.textContent = "00";
             secondsElement.textContent = "00";
 
-            screen.classList.add("finished");
+     const intro = document.getElementById("intro");
 
-            setTimeout(() => {
-                screen.remove();
-            }, 1100);
+if (intro) {
+    intro.classList.add("countdown-reveal");
+}
+
+screen.classList.add("finished");
+
+setTimeout(() => {
+    screen.remove();
+}, 2000);
 
             clearInterval(countdownInterval);
 
